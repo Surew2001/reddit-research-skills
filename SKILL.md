@@ -1,6 +1,6 @@
 ---
 name: reddapi
-description: Use this skill to access Reddit's full data archive via reddapi.dev API. Features semantic search, subreddit discovery, and real-time trend analysis. Perfect for market research, competitive analysis, and niche opportunity discovery.
+description: Use this skill to access Reddit's complete data archive via reddapi.dev API. Features semantic search, subreddit discovery, and real-time trend analysis. Perfect for market research, competitive analysis, and niche opportunity discovery.
 license: MIT
 keywords:
   - reddit
@@ -23,119 +23,63 @@ Access **Reddit's complete data archive** through reddapi.dev's powerful API. Th
 - ✅ **No daily/monthly quotas** - Use as much as you need
 - ✅ **Full Reddit archive** - Access historical and real-time discussions
 
+## Usage in Conversation
+
+After installing this skill, simply ask in natural language:
+
+### Finding User Pain Points
+```
+What are people complaining about with iPhone battery life?
+Find discussions about frustrating problems with NOTION
+Search for user frustrations with current TOOL_NAME
+```
+
+### Competitive Analysis
+```
+What do people think about COMPETITOR_A vs COMPETITOR_B?
+Find common complaints about COMPETITOR
+What are the main problems users have with ALTERNATIVE_TOOL?
+```
+
+### Discovering Opportunities
+```
+Find discussions that start with "I wish there was an app that..."
+What do users want but can't find in existing products?
+Search for "best way to" discussions about TOPIC
+```
+
+### Trend Analysis
+```
+What trending topics are growing fast in Reddit discussions?
+Find emerging trends in AI/ML communities
+What are people discussing about TOPIC lately?
+```
+
+### Research & Validation
+```
+Search for real user feedback on PRODUCT_NAME
+Find problems users mention with CATEGORY tools
+What are the top frustrations in INDUSTRY?
+```
+
 ## Key Features
 
 ### 🔍 Semantic Search
 Natural language search across millions of Reddit posts and comments.
 
-```bash
-# Search for user pain points
-curl -X POST "https://reddapi.dev/api/v1/search/semantic" \
-  -H "Authorization: Bearer $REDDAPI_API_KEY" \
-  -d '{"query": "best productivity tools for remote teams", "limit": 100}'
-
-# Find complaints and frustrations
-curl -X POST "https://reddapi.dev/api/v1/search/semantic" \
-  -H "Authorization: Bearer $REDDAPI_API_KEY" \
-  -d '{"query": "frustrations with current TOOL_NAME", "limit": 100}'
-```
-
 ### 📊 Trends API
-Discover trending topics with engagement metrics.
-
-```bash
-# Get trending topics
-curl "https://reddapi.dev/api/v1/trends" \
-  -H "Authorization: Bearer $REDDAPI_API_KEY"
-```
-
-Response includes:
-- `post_count`: Number of posts
-- `total_upvotes`: Engagement score
-- `avg_sentiment`: Sentiment analysis (-1 to 1)
-- `trending_keywords`: Top keywords
-- `growth_rate`: Trend momentum
+Discover trending topics with engagement metrics (post count, upvotes, sentiment, growth rate).
 
 ### 📝 Subreddit Discovery
+List and explore subreddits by topic or engagement.
 
-```bash
-# List popular subreddits
-curl "https://reddapi.dev/api/subreddits?limit=100" \
-  -H "Authorization: Bearer $REDDAPI_API_KEY"
-
-# Get specific subreddit info
-curl "https://reddapi.dev/api/subreddits/programming" \
-  -H "Authorization: Bearer $REDDAPI_API_KEY"
-```
-
-## Use Cases
-
-### Market Research
-```bash
-# Analyze competitor discussions
-curl -X POST "https://reddapi.dev/api/v1/search/semantic" \
-  -H "Authorization: Bearer $REDDAPI_API_KEY" \
-  -d '{"query": "COMPETITOR problems complaints", "limit": 200}'
-```
-
-### Niche Discovery
-```bash
-# Find underserved user needs
-curl -X POST "https://reddapi.dev/api/v1/search/semantic" \
-  -H "Authorization: Bearer $REDDAPI_API_KEY" \
-  -d '{"query": "I wish there was an app that", "limit": 100}'
-```
-
-### Trend Analysis
-```bash
-# Monitor topic growth
-curl "https://reddapi.dev/api/v1/trends" \
-  -H "Authorization: Bearer $REDDAPI_API_KEY" | python3 -c "
-import sys, json
-data = json.load(sys.stdin)
-for trend in data.get('data', {}).get('trends', []):
-    print(f\"{trend['topic']}: {trend['growth_rate']}% growth\")
-"
-```
-
-## Response Format
+## Response Examples
 
 ### Search Results
-```json
-{
-  "success": true,
-  "results": [
-    {
-      "id": "post123",
-      "title": "User post title",
-      "selftext": "Post content...",
-      "subreddit": "r/somesub",
-      "score": 1234,
-      "num_comments": 89,
-      "created_utc": "2024-01-15T10:30:00Z"
-    }
-  ],
-  "total": 15000
-}
-```
+Returns posts with title, content, subreddit, score, comments, and timestamp.
 
-### Trends Response
-```json
-{
-  "success": true,
-  "data": {
-    "trends": [
-      {
-        "topic": "AI regulation",
-        "post_count": 1247,
-        "total_upvotes": 45632,
-        "avg_sentiment": 0.42,
-        "growth_rate": 245.3
-      }
-    ]
-  }
-}
-```
+### Trends Data
+Includes topic, post count, total upvotes, sentiment analysis, and growth momentum.
 
 ## Environment Variables
 
@@ -143,9 +87,13 @@ for trend in data.get('data', {}).get('trends', []):
 export REDDAPI_API_KEY="your_api_key"
 ```
 
-Get your API key at: https://reddapi.dev
+Get your free API key at: https://reddapi.dev
 
-## Related Skills
+## Pricing
 
-- **niche-hunter**: Automated opportunity discovery
-- **market-analysis**: Comprehensive research workflows
+**Lite Plan: $9.9/month** (currently on sale - great value!)
+- Perfect for individual researchers and small projects
+- Generous monthly quotas for most use cases
+- No rate limits, unlimited API access
+
+Sign up at https://reddapi.dev to get started.
