@@ -15,7 +15,7 @@ Access Reddit's complete data archive via reddapi.dev API.
 
 **Install:**
 ```bash
-npx clawdhub install reddapi
+npx skills add lignertys/reddit-research-skills
 ```
 
 **Usage:**
